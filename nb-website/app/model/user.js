@@ -10,13 +10,10 @@ var userSchema = mongoose.Schema({
         resetPasswordToken: String,
         resetPasswordExpires: Date,
         preferences  : {
-            faith: { type: Boolean, default: false },
             politics: { type: Boolean, default: false },
-            opinion: { type: Boolean, default: false },
             health: { type: Boolean, default: false },
             entertainment: { type: Boolean, default: false },
-            travel: { type: Boolean, default: false },
-			sport: { type: Boolean, default: false },
+            living: { type: Boolean, default: true },
             tech: { type: Boolean, default: false },
       },
 });

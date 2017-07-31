@@ -32,18 +32,10 @@ module.exports = function(app, passport) {
             
             if(userPreferences.politics) {
                 res.redirect('/politics');
-            } else if(userPreferences.travel) {
-                 res.redirect('/travel');
-            } else if(userPreferences.opinion) {
-                res.redirect('/opinion');
             }  else if(userPreferences.health) {
                 res.redirect('/health');
-            } else if(userPreferences.faith) {
-                res.redirect('/faith');
             } else if(userPreferences.entertainment) {
                 res.redirect('/entertainment');
-            } else if(userPreferences.sport) {
-                res.redirect('/sport');
             } else if(userPreferences.tech) {
                 res.redirect('/tech');
             } else {
@@ -65,19 +57,13 @@ module.exports = function(app, passport) {
         });
     });
 
-    // TRAVEL SECTION =========================
-	   app.get('/travel', isLoggedIn, function(req, res) {
-        res.render('travel.ejs', {
+	 // LIVING SECTION =========================
+	   app.get('/living', isLoggedIn, function(req, res) {
+        res.render('living.ejs', {
             user : req.user
         });
     });
 	
-		// FAITH SECTION =========================
-	   app.get('/faith', isLoggedIn, function(req, res) {
-        res.render('faith.ejs', {
-            user : req.user
-        });
-    });
 	
 			// Entertainment SECTION =========================
 	   app.get('/entertainment', isLoggedIn, function(req, res) {
@@ -89,20 +75,6 @@ module.exports = function(app, passport) {
 			// HEALTH SECTION =========================
 	   app.get('/health', isLoggedIn, function(req, res) {
         res.render('health.ejs', {
-            user : req.user
-        });
-    });
-	
-				// OPINION SECTION =========================
-	   app.get('/opinion', isLoggedIn, function(req, res) {
-        res.render('opinion.ejs', {
-            user : req.user
-        });
-    });
-	
-			// SPORTS SECTION =========================
-	   app.get('/sport', isLoggedIn, function(req, res) {
-        res.render('sport.ejs', {
             user : req.user
         });
     });

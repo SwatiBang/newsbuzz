@@ -9,7 +9,7 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Entertainment</title>
+    <title>Living</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -23,7 +23,7 @@
         z-index: 1;
     }
     
-    @media (max-width: 576px) {
+    @media (max-width: 100%) {
         nav > .container {
             width: 100%;
         }
@@ -43,21 +43,21 @@
 
 <script>
 
-init1("0","entertainment0");
-init1("1","entertainment1");
-init1("2","entertainment2");
-init1("3","entertainment3");
-init1("4","entertainment4");
-init1("5","entertainment5");
-init1("6","entertainment6");
-init1("7","entertainment7");
-init1("8","entertainment8");
-init1("9","entertainment9");
+init1("0","living0");
+init1("1","living1");
+init1("2","living2");
+init1("3","living3");
+init1("4","living4");
+init1("5","living5");
+init1("6","living6");
+init1("7","living7");
+init1("8","living8");
+init1("9","living9");
 function loadJSON(callback) {   
 
     var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
-    xobj.open('GET', "http://localhost:3000/entertainment0", true); 
+    xobj.open('GET', "http://localhost:3000/living0", true); 
 	 
     xobj.onreadystatechange = function () {
 	
@@ -70,9 +70,23 @@ function loadJSON(callback) {
     xobj.send(null);  
  }
  
+ function init() {
 
+ loadJSON(function(response) {
+  // Parse JSON string into object
+    var actual_JSON = JSON.parse(response); 
+	
+	//window.alert(actual_JSON.living[0].title);
+	document.getElementById('h3_0').innerHTML = actual_JSON.living[0].title;
+	//document.getElementById('p_0').innerHTML = actual_JSON.living[0].content.substr(0, 100);
+	window.alert(actual_JSON.living[0].content);
+	window.alert(actual_JSON.living[0].content.substr(0, 10));
+	document.getElementById('a_0').href = actual_JSON.living[0].link;
+	document.getElementById('img_0').src = "https:"+actual_JSON.living[0].main_img;
+ });
+}
 
-
+/*living 1*/
 function loadJSON1(jsonf, callback) {   
 
     var xobj = new XMLHttpRequest();
@@ -97,12 +111,12 @@ function loadJSON1(jsonf, callback) {
     var actual_JSON = JSON.parse(response); 
 	
 	
-	document.getElementById('h3_'+id).innerHTML = actual_JSON.entertainment[0].title;
-	document.getElementById('p_'+id).innerHTML = actual_JSON.entertainment[0].content.substr(0, 500)+"...";
-	document.getElementById('p_time_'+id).innerHTML = actual_JSON.entertainment[0].release;
-	document.getElementById('p_author_'+id).innerHTML = actual_JSON.entertainment[0].author;
-	document.getElementById('a_'+id).href = actual_JSON.entertainment[0].link;
-	document.getElementById('img_'+id).src = "https:"+actual_JSON.entertainment[0].main_img;
+	document.getElementById('h3_'+id).innerHTML = actual_JSON.living[0].title;
+	document.getElementById('p_'+id).innerHTML = actual_JSON.living[0].content.substr(0, 500)+"...";
+	document.getElementById('p_time_'+id).innerHTML = actual_JSON.living[0].release;
+	document.getElementById('p_author_'+id).innerHTML = actual_JSON.living[0].author;
+	document.getElementById('a_'+id).href = actual_JSON.living[0].link;
+	document.getElementById('img_'+id).src = "https:"+actual_JSON.living[0].main_img;
  });
 }
 </script>
@@ -122,14 +136,17 @@ function loadJSON1(jsonf, callback) {
                     </li>
                         <%}%>
 
-
-                      <%if(user.preferences.living) {%>
+                       <%if(user.preferences.living) {%>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/living">Living</a>
+                        <a class="nav-link" href="/living">Living<span class="sr-only">(current)</span></a>
                     </li>
                         <%}%>
 
-
+                     <%if(user.preferences.opinion) {%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/opinion">Opinion</a>
+                    </li>
+                    <%}%>
 
                      <%if(user.preferences.health) {%>
                     <li class="nav-item">
@@ -137,20 +154,30 @@ function loadJSON1(jsonf, callback) {
                     </li>
                     <%}%>
 
+                     <%if(user.preferences.faith) {%>
+					 <li class="nav-item">
+                        <a class="nav-link" href="/faith">BeatGoesOn</a>
+                    </li>
+                    <%}%>
+
 
                     <%if(user.preferences.entertainment) {%>
-					<li class="nav-item active">
-                        <a class="nav-link" href="/entertainment">Entertainment<span class="sr-only">(current)</span></a>
+					<li class="nav-item">
+                        <a class="nav-link" href="/entertainment">Entertainment</a>
                     </li>
                       <%}%>
 					  
+					  <%if(user.preferences.sport) {%>
+					<li class="nav-item">
+                        <a class="nav-link" href="/sport">Sport</a>
+                    </li>
+                      <%}%>
 					  
 					      <%if(user.preferences.tech) {%>
 					<li class="nav-item">
                         <a class="nav-link" href="/tech">Tech</a>
                     </li>
                       <%}%>
-					  
 
                     <li class="nav-item">
                         <a class="nav-link" href="/edit_profile">Edit Profile</a>
@@ -167,9 +194,20 @@ function loadJSON1(jsonf, callback) {
     <div class="container">
 
         <!-- Page Heading -->
-        <h1 class="my-4">Entertainment <small>Top Stories</small></h1>
+        <h1 class="my-4">Living <small>Top Stories</small></h1>
 
+        <!-- Project One -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img  id="img_0" class="img-fluid rounded mb-3 mb-md-0"  alt="obama" width="700" height="700">
+                </a>
+            </div>
+           
+        </div>
+        <!-- /.row -->
 
+        <hr>
 <!-- Project One -->
         <div class="row">
            

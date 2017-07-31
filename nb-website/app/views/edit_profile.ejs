@@ -63,17 +63,13 @@
                     </li>
                         <%}%>
 
-                       <%if(user.preferences.travel) {%>
+
+			  <%if(user.preferences.living) {%>
                     <li class="nav-item">
-                        <a class="nav-link" href="/travel">Travel</a>
+                        <a class="nav-link" href="/living">Living</a>
                     </li>
                         <%}%>
 
-                     <%if(user.preferences.opinion) {%>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/opinion">Opinion</a>
-                    </li>
-                    <%}%>
 
                      <%if(user.preferences.health) {%>
                     <li class="nav-item">
@@ -146,11 +142,6 @@
 		 <td><label for="preferences">News Preferences:</label></td>
                              <td>
 							 <br /> 
-                            <%if(user.preferences.faith) {%>
-  							 <input type="checkbox" name="faith" checked="true"> Beat Goes On<br>
-                 <%} else{%>
-                  <input type="checkbox" name="faith" unchecked="true"> BeatGoesOn<br>
-                 <% } %>
 
                        <%if(user.preferences.politics) {%>
                  <input type="checkbox" name="politics" checked="true"> Politics<br>
@@ -158,14 +149,6 @@
                   <input type="checkbox" name="politics" unchecked="true"> Politics<br>
                  <% } %>
 
-
-  							  <%if(user.preferences.opinion) {%>
-                 <input type="checkbox" name="opinion" checked="true"> Opinion<br>
-                 <%} else{%>
-                  <input type="checkbox" name="opinion" unchecked="true"> Opinion<br>
-                 <% } %>
-
-  							
 
                   <%if(user.preferences.health) {%>
                  <input type="checkbox" name="health" checked="true"> Health<br>
@@ -181,17 +164,13 @@
                   <input type="checkbox" name="entertainment" unchecked="true"> Entertainment<br>
                  <% } %>
 
-                 <%if(user.preferences.travel) {%>
-                 <input type="checkbox" name="travel" checked="true"> Travel<br>
+
+                 <%if(user.preferences.living) {%>
+                 <input type="checkbox" name="living" checked="true"> Living<br>
                  <%} else{%>
-                  <input type="checkbox" name="travel" unchecked="true"> Travel<br>
+                  <input type="checkbox" name="living" unchecked="true"> Living<br>
                  <% } %>
-				 
-				       <%if(user.preferences.sport) {%>
-                 <input type="checkbox" name="sport" checked="true"> Sports<br>
-                 <%} else{%>
-                  <input type="checkbox" name="sport" unchecked="true"> Sports<br>
-                 <% } %>
+
 
                  <%if(user.preferences.tech) {%>
                  <input type="checkbox" name="tech" checked="true"> Tech<br>

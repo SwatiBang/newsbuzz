@@ -47,6 +47,12 @@ init1("0","health0");
 init1("1","health1");
 init1("2","health2");
 init1("3","health3");
+init1("4","health4");
+init1("5","health5");
+init1("6","health6");
+init1("7","health7");
+init1("8","health8");
+init1("9","health9");
 function loadJSON(callback) {   
 
     var xobj = new XMLHttpRequest();
@@ -116,17 +122,13 @@ function loadJSON1(jsonf, callback) {
                     </li>
                         <%}%>
 
-                       <%if(user.preferences.travel) {%>
+
+                       <%if(user.preferences.living) {%>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/travel">Travel</a>
+                        <a class="nav-link" href="/living">Living</a>
                     </li>
                         <%}%>
 
-                     <%if(user.preferences.opinion) {%>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/opinion">Opinion</a>
-                    </li>
-                    <%}%>
 
                      <%if(user.preferences.health) {%>
                     <li class="nav-item active">
@@ -134,22 +136,9 @@ function loadJSON1(jsonf, callback) {
                     </li>
                     <%}%>
 
-                     <%if(user.preferences.faith) {%>
-					 <li class="nav-item">
-                        <a class="nav-link" href="/faith">BeatGoesOn</a>
-                    </li>
-                    <%}%>
-
-
                     <%if(user.preferences.entertainment) {%>
 					<li class="nav-item">
                         <a class="nav-link" href="/entertainment">Entertainment</a>
-                    </li>
-                      <%}%>
-					  
-					  <%if(user.preferences.sport) {%>
-					<li class="nav-item">
-                        <a class="nav-link" href="/sport">Sport</a>
                     </li>
                       <%}%>
 					  
@@ -176,18 +165,6 @@ function loadJSON1(jsonf, callback) {
         <!-- Page Heading -->
         <h1 class="my-4">Health <small>Top Stories</small></h1>
 
-       <!-- Project One -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img  id="img_0" class="img-fluid rounded mb-3 mb-md-0"  alt="obama" width="700" height="700">
-                </a>
-            </div>
-           
-        </div>
-        <!-- /.row -->
-
-        <hr>
 <!-- Project One -->
         <div class="row">
            
