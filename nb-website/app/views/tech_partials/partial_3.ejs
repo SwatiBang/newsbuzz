@@ -12,10 +12,10 @@
     <title>Tech</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" type="text/css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/1-col-portfolio.css"  type="text/css" rel="stylesheet">
+    <link href="../css/1-col-portfolio.css"  type="text/css" rel="stylesheet">
 
     <!-- Temporary fix for navbar responsiveness -->
     <style>
@@ -30,48 +30,20 @@
     }
     </style>
 <!-- jQuery Version 3.1.1 -->
-    <script src="js/jquery.js"></script>
+    <script src="../js/jquery.js"></script>
 
     <!-- Tether -->
-    <script src="js/tether.min.js"></script>
+    <script src="../js/tether.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
 <script>
 
-init1("0","tech0");
-init1("1","tech1");
-init1("2","tech2");
 init1("3","tech3");
-init1("4","tech4");
-init1("5","tech5");
-init1("6","tech6");
-init1("7","tech7");
-init1("8","tech8");
-init1("9","tech9");
-function loadJSON(callback) {
-
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', "http://localhost:3000/tech0", true);
-
-    xobj.onreadystatechange = function () {
-
-          if (xobj.readyState == 4 && xobj.status == "200") {
-
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);
- }
-
-
-
 
 function loadJSON1(jsonf, callback) {
 
@@ -97,12 +69,12 @@ function loadJSON1(jsonf, callback) {
     var actual_JSON = JSON.parse(response);
 
 
-	// document.getElementById('h3_'+id).innerHTML = actual_JSON.tech[0].title;
+	document.getElementById('h3_'+id).innerHTML = actual_JSON.tech[0].title;
+	document.getElementById('p_'+id).innerHTML = actual_JSON.tech[0].content.substr(0, 500)+"...";
 	document.getElementById('p_time_'+id).innerHTML = actual_JSON.tech[0].release;
 	document.getElementById('p_author_'+id).innerHTML = actual_JSON.tech[0].author;
-	document.getElementById('a_partial_'+id).href = '/tech/' + id;
-	document.getElementById('a_partial_'+id).innerHTML = actual_JSON.tech[0].title;
-	document.getElementById('img_'+id).src = actual_JSON.tech[0].main_img;
+	document.getElementById('a_'+id).href = actual_JSON.tech[0].link;
+	document.getElementById('img_'+id).src = "https:"+actual_JSON.tech[0].main_img;
  });
 }
 </script>
@@ -117,14 +89,13 @@ function loadJSON1(jsonf, callback) {
                 <ul class="navbar-nav ml-auto">
 
                    <%if(user.preferences.politics) {%>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/politics">Politics </a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/politics">Politics <span class="sr-only">(current)</span></a>
                     </li>
                         <%}%>
 
-
-                      <%if(user.preferences.living) {%>
-                    <li class="nav-item active">
+                       <%if(user.preferences.living) {%>
+                    <li class="nav-item">
                         <a class="nav-link" href="/living">Living</a>
                     </li>
                         <%}%>
@@ -137,6 +108,7 @@ function loadJSON1(jsonf, callback) {
                     </li>
                     <%}%>
 
+
                     <%if(user.preferences.entertainment) {%>
 					<li class="nav-item">
                         <a class="nav-link" href="/entertainment">Entertainment</a>
@@ -145,8 +117,8 @@ function loadJSON1(jsonf, callback) {
 
 
 					      <%if(user.preferences.tech) {%>
-					<li class="nav-item active">
-                        <a class="nav-link" href="/tech">Tech<span class="sr-only">(current)</span></a>
+					<li class="nav-item">
+                        <a class="nav-link" href="/tech">Tech</a>
                     </li>
                       <%}%>
 
@@ -167,88 +139,21 @@ function loadJSON1(jsonf, callback) {
         <!-- Page Heading -->
         <h1 class="my-4">Tech <small>Top Stories</small></h1>
 
-        <hr>
+
 <!-- Project One -->
         <div class="row">
 
             <div class="col-md-7">
-                <h3 id="h3_0">
-                    <a id="a_partial_0" target="_blank" />
-                </h3>
-				<h6><p id="p_time_0"></p></h6>
-				<h5><p id="p_author_0"></p></h5>
-                <p id="p_0"></p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-        <!-- Project Two -->
-        <div class="row">
-
-            <div class="col-md-7">
-                <h3 id="h3_1">
-                    <a id="a_partial_1" target="_blank" />
-                </h3>
-				<h6><p id="p_time_1"></p></h6>
-				<h5><p id="p_author_1"></p></h5>
-                <p id="p_1"></p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Three -->
-        <div class="row">
-
-            <div class="col-md-7">
-                <h3 id="h3_2">
-                    <a id="a_partial_2" target="_blank" />
-                </h3>
-				<h6><p id="p_time_2"></p></h6>
-				<h5><p id="p_author_2"></p></h5>
-                <p id="p_2" ></p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Four -->
-        <div class="row">
-
-
-            <div class="col-md-7">
-                <h3 id="h3_3">
-                    <a id="a_partial_3" target="_blank" />
-                </h3>
+                <h3 id="h3_3"></h3>
 				<h6><p id="p_time_3"></p></h6>
 				<h5><p id="p_author_3"></p></h5>
                 <p id="p_3"></p>
+                <a id="a_3" target="blank">Read More</a>
             </div>
         </div>
         <!-- /.row -->
 
         <hr>
-
-        <!-- Project Five -->
-        <div class="row">
-
-
-            <div class="col-md-7">
-                <h3 id="h3_4">
-                    <a id="a_partial_4" target="_blank" />
-                </h3>
-                <h6><p id="p_time_4"></p></h6>
-                <h5><p id="p_author_4"></p></h5>
-                <p id="p_4"></p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
     </div>
     <!-- /.container -->
 
