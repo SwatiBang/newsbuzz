@@ -4,7 +4,7 @@ var crypto       = require('crypto');
 var nodemailer = require("nodemailer");
 var smtpTransportLib = require('nodemailer-smtp-transport');
 var helper = require('sendgrid').mail;
- 
+
 from_email = new helper.Email("");
 
 var sg   = require('sendgrid')('');
@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
                 res.redirect('/profile');
             } else {
                 res.render('index.ejs');
-        } 
+        }
     });
 
     // HOME SECTION =========================
@@ -29,7 +29,7 @@ module.exports = function(app, passport) {
 
         if(req.user && req.user.preferences) {
             var userPreferences = req.user.preferences;
-            
+
             if(userPreferences.politics) {
                 res.redirect('/politics');
             }  else if(userPreferences.health) {
@@ -49,7 +49,7 @@ module.exports = function(app, passport) {
             });
         }
     });
-	
+
 	// POLITICS SECTION =========================
 	   app.get('/politics', isLoggedIn, function(req, res) {
         res.render('politics.ejs', {
@@ -57,28 +57,50 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/politics/:partial', isLoggedIn, function(req, res) {
+       res.render('politics_partials/partial_' + req.params.partial, {
+           user : req.user
+       });
+   });
+
 	 // LIVING SECTION =========================
 	   app.get('/living', isLoggedIn, function(req, res) {
         res.render('living.ejs', {
             user : req.user
         });
     });
-	
-	
+
+    app.get('/living/:partial', isLoggedIn, function(req, res) {
+       res.render('living_partials/partial_' + req.params.partial, {
+           user : req.user
+       });
+   });
+
 			// Entertainment SECTION =========================
 	   app.get('/entertainment', isLoggedIn, function(req, res) {
         res.render('entertainment.ejs', {
             user : req.user
         });
     });
-	
+
+    app.get('/entertainment/:partial', isLoggedIn, function(req, res) {
+       res.render('entertainment_partials/partial_' + req.params.partial, {
+           user : req.user
+       });
+   });
 			// HEALTH SECTION =========================
 	   app.get('/health', isLoggedIn, function(req, res) {
         res.render('health.ejs', {
             user : req.user
         });
     });
-	
+
+    app.get('/health/:partial', isLoggedIn, function(req, res) {
+       res.render('health_partials/partial_' + req.params.partial, {
+           user : req.user
+       });
+   });
+
 				// TECH SECTION =========================
 	   app.get('/tech', isLoggedIn, function(req, res) {
         res.render('tech.ejs', {
@@ -86,8 +108,13 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/tech/:partial', isLoggedIn, function(req, res) {
+       res.render('tech_partials/partial_' + req.params.partial, {
+          user : req.user
+       });
+    });
 
-	
+
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
         req.logout();
@@ -111,7 +138,7 @@ module.exports = function(app, passport) {
 
     app.post('/edit_profile', isLoggedIn, function(req, res) {
         user            = req.user;
-       
+
         console.log(req.body.firstName);
         console.log(req.body.lastName);
         console.log(req.body.address);
@@ -122,40 +149,40 @@ module.exports = function(app, passport) {
         if (!user)
             return next(new Error('Could not load Document'));
 			 else if(req.body.firstName.length == 0){
-                       
+
 						req.flash('editMessage', 'First Name can not be blank! No change has been made to your profile');
                 return res.redirect('/edit_profile');
                     } else if(req.body.lastName.length == 0){
-                       
+
 						req.flash('editMessage', 'Last Name can not be blank! No changes have been made to your profile');
                 return res.redirect('/edit_profile');
-                     } else if(!req.param('faith') && !req.param('politics') 
-                     && !req.param('opinion') && !req.param('health') 
+                     } else if(!req.param('faith') && !req.param('politics')
+                     && !req.param('opinion') && !req.param('health')
                      && !req.param('entertainment') && !req.param('travel')
 					 && !req.param('sport') && !req.param('tech')){
 					 req.flash('editMessage', 'At least one preference should be added! No changes have been made to your profile');
                 return res.redirect('/edit_profile');
-                       
+
                     }else if(req.body.password.trim() != req.body.conpassword.trim()){
-                       
+
 						req.flash('editMessage', 'Password and confirm password dont match! No changes have been made to your profile');
                 return res.redirect('/edit_profile');
                      }else if(req.body.password.trim().length<6){
-                       
+
 						req.flash('editMessage', 'Password must contain atleast 6 characters. A strong password is advisable (combination of letters , numbers and special characters)');
                 return res.redirect('/edit_profile');
                      }
-			
+
         else {
 
             user.first = req.body.firstName;
             user.last = req.body.lastName;
             user.address = req.body.address;
-			
+
 			if(req.body.password!="P@ssw0rd123"){
             user.password = user.generateHash(req.body.password);
 			}
-			
+
             user.preferences.faith = req.body.faith ? true: false;
             user.preferences.politics = req.body.politics? true: false;
             user.preferences.opinion = req.body.opinion ? true: false;
@@ -164,9 +191,9 @@ module.exports = function(app, passport) {
             user.preferences.travel = req.body.travel ? true: false;
 			user.preferences.sport = req.body.sport ? true: false;
             user.preferences.tech = req.body.tech ? true: false;
-			
-			
-			
+
+
+
             }
             user.save(function(err) {
             if (err)
@@ -177,10 +204,10 @@ module.exports = function(app, passport) {
                 res.redirect('/edit_profile');
             }
             });
-        }); 
+        });
 });
 
-    
+
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -219,7 +246,7 @@ module.exports = function(app, passport) {
              user: req.user
             });
         });
-        
+
         app.post('/forgotPassword', function(req, res, next) {
         async.waterfall([
             function(done) {
@@ -317,7 +344,7 @@ module.exports = function(app, passport) {
                 //  var to_email = new helper.Email(user.email);
                 //  var subject = "News Agregation System Your password has been changed";
                 //  var content = new helper.Content("Hello,\n\n" +
-                //  "This is a confirmation that the password for your account " + user.email + 
+                //  "This is a confirmation that the password for your account " + user.email +
                 //  " has just been changed.\n");
                 // var mail = new helper.Mail(from_email, subject, to_email, content);
 
@@ -383,5 +410,5 @@ function isLoggedIn(req, res, next) {
         return next();
     } else {
         res.redirect('/');
-    } 
+    }
 }

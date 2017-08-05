@@ -22,7 +22,7 @@
     .navbar-toggler {
         z-index: 1;
     }
-    
+
     @media (max-width: 576px) {
         nav > .container {
             width: 100%;
@@ -53,55 +53,55 @@ init1("6","entertainment6");
 init1("7","entertainment7");
 init1("8","entertainment8");
 init1("9","entertainment9");
-function loadJSON(callback) {   
+function loadJSON(callback) {
 
     var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
-    xobj.open('GET', "http://localhost:3000/entertainment0", true); 
-	 
+    xobj.open('GET', "http://localhost:3000/entertainment0", true);
+
     xobj.onreadystatechange = function () {
-	
+
           if (xobj.readyState == 4 && xobj.status == "200") {
-		 
+
             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
             callback(xobj.responseText);
           }
     };
-    xobj.send(null);  
+    xobj.send(null);
  }
- 
 
 
 
-function loadJSON1(jsonf, callback) {   
+
+function loadJSON1(jsonf, callback) {
 
     var xobj = new XMLHttpRequest();
         xobj.overrideMimeType("application/json");
-    xobj.open('GET', "http://localhost:3000/"+jsonf, true); 
-	 
+    xobj.open('GET', "http://localhost:3000/"+jsonf, true);
+
     xobj.onreadystatechange = function () {
-	
+
           if (xobj.readyState == 4 && xobj.status == "200") {
-		 
+
             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
             callback(xobj.responseText);
           }
     };
-    xobj.send(null);  
+    xobj.send(null);
  }
- 
+
  function init1(id,jsonf) {
 
  loadJSON1(jsonf, function(response) {
   // Parse JSON string into object
-    var actual_JSON = JSON.parse(response); 
-	
-	
-	document.getElementById('h3_'+id).innerHTML = actual_JSON.entertainment[0].title;
-	document.getElementById('p_'+id).innerHTML = actual_JSON.entertainment[0].content.substr(0, 500)+"...";
+    var actual_JSON = JSON.parse(response);
+
+
+	// document.getElementById('h3_'+id).innerHTML = actual_JSON.entertainment[0].title;
 	document.getElementById('p_time_'+id).innerHTML = actual_JSON.entertainment[0].release;
 	document.getElementById('p_author_'+id).innerHTML = actual_JSON.entertainment[0].author;
-	document.getElementById('a_'+id).href = actual_JSON.entertainment[0].link;
+	document.getElementById('a_partial_'+id).href = '/entertainment/'+ id ;
+	document.getElementById('a_partial_'+id).innerHTML = actual_JSON.entertainment[0].title;
 	document.getElementById('img_'+id).src = "https:"+actual_JSON.entertainment[0].main_img;
  });
 }
@@ -112,7 +112,7 @@ function loadJSON1(jsonf, callback) {
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container">
-            <a class="navbar-brand" href="/profile">News Aggregation Portal</a>
+            <a class="navbar-brand" href="/profile">NewzBuzz</a>
             <div class="collapse navbar-collapse" id="navbarExample">
                 <ul class="navbar-nav ml-auto">
 
@@ -143,14 +143,14 @@ function loadJSON1(jsonf, callback) {
                         <a class="nav-link" href="/entertainment">Entertainment<span class="sr-only">(current)</span></a>
                     </li>
                       <%}%>
-					  
-					  
+
+
 					      <%if(user.preferences.tech) {%>
 					<li class="nav-item">
                         <a class="nav-link" href="/tech">Tech</a>
                     </li>
                       <%}%>
-					  
+
 
                     <li class="nav-item">
                         <a class="nav-link" href="/edit_profile">Edit Profile</a>
@@ -172,13 +172,14 @@ function loadJSON1(jsonf, callback) {
 
 <!-- Project One -->
         <div class="row">
-           
+
             <div class="col-md-7">
-                <h3 id="h3_0"></h3>
+                <h3 id="h3_0">
+                    <a id="a_partial_0" target="_blank" />
+                </h3>
 				<h6><p id="p_time_0"></p></h6>
 				<h5><p id="p_author_0"></p></h5>
                 <p id="p_0"></p>
-                <a  id="a_0" target="blank">Read More</a>
             </div>
         </div>
         <!-- /.row -->
@@ -186,13 +187,14 @@ function loadJSON1(jsonf, callback) {
         <hr>
         <!-- Project Two -->
         <div class="row">
-           
+
             <div class="col-md-7">
-                <h3 id="h3_1"></h3>
+                <h3 id="h3_1">
+                    <a id="a_partial_1" target="_blank" />
+                </h3>
 				<h6><p id="p_time_1"></p></h6>
 				<h5><p id="p_author_1"></p></h5>
                 <p id="p_1"></p>
-                <a  id="a_1" target="blank">Read More</a>
             </div>
         </div>
         <!-- /.row -->
@@ -201,13 +203,14 @@ function loadJSON1(jsonf, callback) {
 
         <!-- Project Three -->
         <div class="row">
-          
+
             <div class="col-md-7">
-                <h3 id="h3_2"></h3>
+                <h3 id="h3_2">
+                    <a id="a_partial_2" target="_blank" />
+                </h3>
 				<h6><p id="p_time_2"></p></h6>
 				<h5><p id="p_author_2"></p></h5>
                 <p id="p_2" ></p>
-                <a  id="a_2" target="blank">Read More</a>
             </div>
         </div>
         <!-- /.row -->
@@ -217,20 +220,33 @@ function loadJSON1(jsonf, callback) {
         <!-- Project Four -->
         <div class="row">
 
-          
+
             <div class="col-md-7">
-                <h3 id ="h3_3"></h3>
+                <h3 id="h3_3">
+                    <a id="a_partial_3" target="_blank" />
+                </h3>
 				<h6><p id="p_time_3"></p></h6>
 				<h5><p id="p_author_3"></p></h5>
                 <p id="p_3"></p>
-                <a  id="a_3" target="blank">Read More</a>
             </div>
         </div>
         <!-- /.row -->
 
         <hr>
+<!-- Project Five -->
+        <div class="row">
+            <div class="col-md-7">
+                <h3 id="h3_4">
+                    <a id="a_partial_4" target="_blank" />
+                </h3>
+                <h6><p id="p_time_4"></p></h6>
+                <h5><p id="p_author_4"></p></h5>
+                <p id="p_4"></p>
+            </div>
+        </div>
+        <!-- /.row -->
 
-       
+        <hr>
 
     </div>
     <!-- /.container -->
@@ -238,12 +254,12 @@ function loadJSON1(jsonf, callback) {
     <!-- Footer -->
     <footer class="py-5 bg-inverse">
         <div class="container">
-            <p class="m-0 text-center text-white">News Aggregation Portal</p>
+            <p class="m-0 text-center text-white">NewzBuzz</p>
         </div>
         <!-- /.container -->
     </footer>
 
-    
+
 
 </body>
 
