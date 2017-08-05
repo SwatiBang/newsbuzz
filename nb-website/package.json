@@ -11,9 +11,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TaniaSolo/CapstoneServer.git"
+    "url": "https://github.com/SwatiBang/newsbuzz"
   },
-  "author": "TaniaSolo",
+  "author": "NewzBuzz",
   "license": "ISC",
   "dependencies": {
     "async": "2.3.0",
