@@ -4,92 +4,89 @@ var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
 
+function crawjson(url, category) {
+    request(url, function(error, response, html) {
+        if (!error && response.statusCode == 200) {
+            var $ = cheerio.load(html);
 
-function crawjson(url, category) { 
-request(url, function (error, response, html) {
-  if (!error && response.statusCode == 200) {
-    var $ = cheerio.load(html);
-//var $ = cheerio.load(fs.readFileSync('cnn.html'));
-var section, title1, link1, title2, link2;
- // console.log(html);
+            var titles_links_arr = [];
 
-var titles_links_arr=[];
-var author;
-var all_stories=[];
-	
-	
-/*Politics -Start*/
-titles_links_arr=[];
+            var i = 0;
+            var s = $('title');
+            $('body').find('item').each(function(index, element) {
+                var linksrc = $(element).children('guid').text();
+                var titles_links = {
+                    section: category,
+                    main_img: "",
+                    id: "",
+                    link: linksrc,
+                    title: "",
+                    author: "",
+                    release: "",
+                    source: "",
+                    content: ""
+                };
 
-var i=0;
-var s = $('title');
-console.log(s.html());
-$('body').find('item').each(function (index, element) {
-  var linksrc = $(element).children('guid').text();
+                request(linksrc, function(error, response, html) {
+                    if (!error) {
 
-	var titles_links={section: category,main_img:"",id:"",link:linksrc,title:"",author:"",release:"",source:"",content:""};
+                        var page = cheerio.load(html);
+                        var page_var = {
+                            link: "",
+                            author: "",
+                            release: "",
+                            body: ""
+                        };
 
- request(linksrc, function(error, response, html){
-    if(!error){
-      
-        var page = cheerio.load(html);
-        var page_var = { link : "", author: "",release:"", body:"" };
-   
+                        page('.metadata__byline__author').filter(function() {
+                            var data = $(this);
+                            title = data.text();
 
-    page('.metadata__byline__author').filter(function(){
-        var data = $(this);
-        title = data.text();            
-       
-        page_var.author = title;
-        titles_links.author=title;
-       // json.release = release;
-    })
-    page('.update-time').filter(function(){
-        var data = $(this);
-        titles_links.release = data.text();            
-       
-    })
-  
-  page('.pg-headline').filter(function(){
-        var data = $(this);
-        titles_links.title = data.text();            
-      
-       
-    })
-    page('.el-editorial-source').filter(function(){
-        var data = $(this);
-        titles_links.source = data.text();            
-      
-        
-    })
-    page('p[class=zn-body__paragraph]').filter(function(){
-        var data = $(this);
-        titles_links.content = data.text();            
-     
-       
-    })
-  page('div[class=zn-body__paragraph]').filter(function(){
-        var data = $(this);
-        titles_links.content = titles_links.content+data.text();            
-     
-       
-    })
+                            page_var.author = title;
+                            titles_links.author = title;
+                            // json.release = release;
+                        })
+                        page('.update-time').filter(function() {
+                            var data = $(this);
+                            titles_links.release = data.text();
+                        })
 
-  if (titles_links.title != "") {  
-      titles_links.id=i++;
-    fs.writeFile(category+(titles_links.id)+".json", "{\""+category+"\": ["+JSON.stringify(titles_links, null, 4)+"]}", function(err){
+                        page('.pg-headline').filter(function() {
+                            var data = $(this);
+                            titles_links.title = data.text();
+                        })
+                        page('.el-editorial-source').filter(function() {
+                            var data = $(this);
+                            titles_links.source = data.text();
+                        })
+                        page('p[class=zn-body__paragraph]').filter(function() {
+                            var data = $(this);
+                            titles_links.content = data.text();
+                        })
+                        page('div[class=zn-body__paragraph]').filter(function() {
+                            var data = $(this);
+                            titles_links.content = titles_links.content + data.text();
+                        })
 
-    console.log(category + ' content successfully written! - Check your project directory for the output.json file');
-  })
-  }
+                        if (i == 5) {
+                            return
+                        }
+                        if (titles_links.title != "") {
+                            titles_links.id = i++;
+                            fs.writeFile(category + (titles_links.id) + ".json", "{\"" + category + "\": [" + JSON.stringify(titles_links, null, 4) + "]}", function(err) {
 
-  }
+                                console.log(category + ' content successfully written! - to file: ' + category + (titles_links.id) + '.json');
+                            })
+                        }
 
-  })/*Req end*/
+                    }
+
+                })
 
 
-});
-}});
+            });
+        }
+    });
 }
 
 crawjson('http://rss.cnn.com/rss/cnn_allpolitics.rss', "politics");
