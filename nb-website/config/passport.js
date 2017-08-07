@@ -67,7 +67,7 @@ module.exports = function(passport) {
         usernameField : 'email',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-    }, 
+    },
     function(req, email, password, done) {
         if (email) {
             email = email.toLowerCase(); // Use lower-case e-mails to avoid case-sensitive e-mail matching
@@ -88,8 +88,8 @@ module.exports = function(passport) {
                         return done(null, false, req.flash('signupMessage', 'First Name can not be blank!'));
                     } else if(req.param('lastName').length == 0){
                         return done(null, false, req.flash('signupMessage', 'Last Name can not be blank!'));
-                     } else if(!req.param('faith') && !req.param('politics') 
-                     && !req.param('opinion') && !req.param('health') 
+                     } else if(!req.param('faith') && !req.param('politics')
+                     && !req.param('opinion') && !req.param('health')
                      && !req.param('entertainment') && !req.param('travel')
 					 && !req.param('sport') && !req.param('tech')){
                         return done(null, false, req.flash('signupMessage', 'At least one preference should be added!'));
@@ -131,7 +131,7 @@ module.exports = function(passport) {
                 User.findOne({ 'email' :  email }, function(err, user) {
                     if (err)
                         return done(err);
-                    
+
                     if (user) {
                         return done(null, false, req.flash('loginMessage', 'That email is already taken.'));
                         // Using 'loginMessage instead of signupMessage because it's used by /connect/local'
@@ -142,7 +142,7 @@ module.exports = function(passport) {
                         user.save(function (err) {
                             if (err)
                                 return done(err);
-                            
+
                             return done(null,user);
                         });
                     }

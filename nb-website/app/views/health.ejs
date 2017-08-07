@@ -66,8 +66,6 @@ function loadJSON(callback) {
  }
 
 
-
-
 function loadJSON1(jsonf, callback) {
 
     var xobj = new XMLHttpRequest();
@@ -119,7 +117,7 @@ function loadJSON1(jsonf, callback) {
 
 
                        <%if(user.preferences.living) {%>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/living">Living</a>
                     </li>
                         <%}%>
@@ -162,82 +160,73 @@ function loadJSON1(jsonf, callback) {
 
 <!-- Project One -->
         <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="h3_0" class="title">
+                            <a id="a_partial_0" target="_blank" />
+                        </div>
+        				<div class="time"><p id="p_time_0"></p></div>
+        				<div class="author"><p id="p_author_0"></p></div>
+                    </div>
+                </div>
+            </div>
 
-            <div class="col-md-7">
-                <h3 id="h3_0">
-                    <a id="a_partial_0" target="_blank" />
-                </h3>
-				<h6><p id="p_time_0"></p></h6>
-				<h5><p id="p_author_0"></p></h5>
-                <p id="p_0"></p>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="h3_1" class="title">
+                            <a id="a_partial_1" target="_blank" />
+                        </div>
+        				<div class="time"><p id="p_time_1"></p></div>
+        				<div class="author"><p id="p_author_1"></p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="h3_2" class="title">
+                            <a id="a_partial_2" target="_blank" />
+                        </div>
+        				<div class="time"><p id="p_time_2"></p></div>
+        				<div class="author"><p id="p_author_2"></p></div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.row -->
 
         <hr>
-        <!-- Project Two -->
-        <div class="row">
-
-            <div class="col-md-7">
-                <h3 id="h3_1">
-                    <a id="a_partial_1" target="_blank" />
-                </h3>
-				<h6><p id="p_time_1"></p></h6>
-				<h5><p id="p_author_1"></p></h5>
-                <p id="p_1"></p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project Three -->
-        <div class="row">
-
-            <div class="col-md-7">
-                <h3 id="h3_2">
-                    <a id="a_partial_2" target="_blank" />
-                </h3>
-				<h6><p id="p_time_2"></p></h6>
-				<h5><p id="p_author_2"></p></h5>
-                <p id="p_2" ></p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
         <!-- Project Four -->
         <div class="row">
-
-
-            <div class="col-md-7">
-                <h3 id="h3_3">
-                    <a id="a_partial_3" target="_blank" />
-                </h3>
-				<h6><p id="p_time_3"></p></h6>
-				<h5><p id="p_author_3"></p></h5>
-                <p id="p_3"></p>
+            <div class="col-md-4 offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="h3_3" class="title">
+                            <a id="a_partial_3" target="_blank" />
+                        </div>
+        				<div class="time"><p id="p_time_3"></p></div>
+        				<div class="author"><p id="p_author_3"></p></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- /.row -->
 
-        <hr>
-
-        <!-- Project Five -->
-        <div class="row">
-
-
-            <div class="col-md-7">
-                <h3 id="h3_4">
-                    <a id="a_partial_4" target="_blank" />
-                </h3>
-                <h6><p id="p_time_4"></p></h6>
-                <h5><p id="p_author_4"></p></h5>
-                <p id="p_4"></p>
+            <div class="col-md-4 offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="h3_4" class="title">
+                            <a id="a_partial_4" target="_blank" />
+                        </div>
+				        <div class="time"><p id="p_time_4"></p></div>
+				        <div class="author"><p id="p_author_4"></p></div>
+                    </div>
+                </div>
             </div>
+
+            <div class="col-md-2"></div>
         </div>
-        <!-- /.row -->
 
         <hr>
 
@@ -252,9 +241,6 @@ function loadJSON1(jsonf, callback) {
         </div>
         <!-- /.container -->
     </footer>
-
-
-
 
 </body>
 
