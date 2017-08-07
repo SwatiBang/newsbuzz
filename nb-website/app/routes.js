@@ -141,9 +141,6 @@ module.exports = function(app, passport) {
 
         console.log(req.body.firstName);
         console.log(req.body.lastName);
-        console.log(req.body.address);
-        console.log(req.body.password);
-		 console.log(user.password);
 
         User.findById(req.session.passport.user, function(err, user) {
         if (!user)
