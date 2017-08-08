@@ -71,6 +71,9 @@ function loadJSON1(jsonf, callback) {
  loadJSON1(jsonf, function(response) {
   // Parse JSON string into object
     var actual_JSON = JSON.parse(response);
+
+
+console.log({ actual_JSON });
 	document.getElementById('a_partial_'+id).href = '/politics/'+ id ;
 	document.getElementById('a_partial_'+id).innerHTML = actual_JSON.politics[0].title;
     document.getElementById('p_time_'+id).innerHTML = actual_JSON.politics[0].release;
@@ -112,9 +115,11 @@ function loadJSON1(jsonf, callback) {
 					<li class="nav-item">
                         <a class="nav-link" href="/entertainment">Entertainment</a>
                     </li>
+
                     <%}%>
 
                     <%if(user.preferences.tech) {%>
+
 					<li class="nav-item">
                         <a class="nav-link" href="/tech">Tech</a>
                     </li>
@@ -139,6 +144,7 @@ function loadJSON1(jsonf, callback) {
         <hr />
         <!-- Project One -->
         <div class="row">
+
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -149,7 +155,9 @@ function loadJSON1(jsonf, callback) {
         				<div class="author"><p id="p_author_0"></p></div>
                     </div>
                 </div>
+
             </div>
+
 
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -161,7 +169,9 @@ function loadJSON1(jsonf, callback) {
         				<div class="author"><p id="p_author_1"></p></div>
                     </div>
                 </div>
+
             </div>
+
 
             <div class="col-md-4">
                 <div class="panel panel-default">
@@ -173,6 +183,7 @@ function loadJSON1(jsonf, callback) {
         				<div class="author"><p id="p_author_2"></p></div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- /.row -->
@@ -181,6 +192,7 @@ function loadJSON1(jsonf, callback) {
 
         <!-- Project Four -->
         <div class="row">
+
             <div class="col-md-4 offset-1">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -191,6 +203,7 @@ function loadJSON1(jsonf, callback) {
         				<div class="author"><p id="p_author_3"></p></div>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-md-4 offset-1">
@@ -203,6 +216,7 @@ function loadJSON1(jsonf, callback) {
 				        <div class="author"><p id="p_author_4"></p></div>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-md-2"></div>
