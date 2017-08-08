@@ -11,3 +11,29 @@ body {
 .pagination {
 	margin-bottom: 15px;
 }
+
+.panel {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px 5px #888;
+}
+
+.time {
+    color: #bbbbbb;
+    font-size: 12px;
+    text-align: right;
+}
+
+.author {
+    font-size: 12px;
+    text-align: right;
+}
+
+.title {
+    padding-bottom: 30px;
+}
+
+.title > a {
+    color: #5cbbf2;
+}

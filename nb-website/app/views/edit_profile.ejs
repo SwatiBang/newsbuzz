@@ -77,31 +77,19 @@
                     </li>
                     <%}%>
 
-                     <%if(user.preferences.faith) {%>
-					 <li class="nav-item">
-                        <a class="nav-link" href="/faith">BeatGoesOn</a>
-                    </li>
-                    <%}%>
-
 
                     <%if(user.preferences.entertainment) {%>
 					<li class="nav-item">
                         <a class="nav-link" href="/entertainment">Entertainment</a>
                     </li>
                       <%}%>
-						
-						<%if(user.preferences.sport) {%>
-					<li class="nav-item">
-                        <a class="nav-link" href="/sport">Sport</a>
-                    </li>
-                      <%}%>
-					  
+
 					      <%if(user.preferences.tech) {%>
 					<li class="nav-item">
                         <a class="nav-link" href="/tech">Tech</a>
                     </li>
                       <%}%>
-					  
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/edit_profile">Edit Profile<span class="sr-only">(current)</span></a>
                     </li>
@@ -112,17 +100,18 @@
             </div>
         </div>
     </nav>
-   
+
    <!-- Page Content -->
     <div class="container">
 
     <!-- Page Heading -->
-    <h1 class="my-4">Edit Profile</h1><br>
-        <br>
+    <h1 class="my-4">Edit Profile</h1>
+        <hr />
 	<!-- show any messages that come back with authentication -->
 	<% if (message.length > 0) { %>
 		<div class="alert alert-danger"><%= message %></div>
 	<% } %>
+    <br />
 	<!-- Edit Profile FORM -->
 	<form action="/edit_profile" method="post">
 
@@ -141,7 +130,7 @@
 		</div>
 		 <td><label for="preferences">News Preferences:</label></td>
                              <td>
-							 <br /> 
+							 <br />
 
                        <%if(user.preferences.politics) {%>
                  <input type="checkbox" name="politics" checked="true"> Politics<br>
@@ -177,9 +166,9 @@
                  <%} else{%>
                   <input type="checkbox" name="tech" unchecked="true"> Tech<br>
                  <% } %>
-  			
-  							
-							    <br /> 
+
+
+							    <br />
                             </td>
                       	</tr>
 
@@ -187,15 +176,15 @@
 			<label>Password</label>
 			<input type="password" class="form-control" name="password" value="P@ssw0rd123">
 		</div>
-		
+
 			<div class="form-group">
 			<label>Confirm Password</label>
 			<input type="password" class="form-control" name="conpassword" value="P@ssw0rd123">
 		</div>
-		
+
 		<div align="center">
 		<button type="save" class="btn btn-warning btn-lg">Save</button>
-      
+
         </div>
 	</form>
     </div>
